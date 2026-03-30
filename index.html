@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nosso Sonho 🤍</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap');
+
+        
+        
+    @media screen and (max-width: 786px) {
+    .book-container { /* Mudei para o nome do seu container atual */
+        width: 90vw; /* Ocupa 90% da largura da tela */
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+    }
+}
+        
+        
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            height: 100vh;
+            height: -webkit-fill-available;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #fff5f7 0%, #ffdee5 100%);
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Container do Livro - Adaptável */
+        .book-container {
+            position: relative;
+            width: 90vw; /* Ocupa 90% da largura da tela no mobile */
+            max-width: 400px; /* Não cresce mais que isso no PC */
+            height: 60vh; /* Altura proporcional à tela */
+            max-height: 550px;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            perspective: 2000px;
+        }
+
+        /* Quando o livro abre */
+        .book-open {
+            transform: translateX(40%); /* Desloca para caber as duas páginas */
+        }
+
+        .book-container::before {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #a31545;
+            border-radius: 5px 15px 15px 5px;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.15);
+            transform: scale(1.02);
+            z-index: -1;
+        }
+
+        .paper {
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-origin: left;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%; height: 100%;
+            padding: 20px;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #fffdfa url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            border-radius: 0 10px 10px 0;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            border-radius: 10px 0 0 10px;
+            box-shadow: inset -10px 0 30px rgba(0,0,0,0.05);
+        }
+
+        .flipped { transform: rotateY(-180deg); }
+
+        h1 { font-family: 'Dancing Script', cursive; color: #c2185b; font-size: 1.8rem; margin-bottom: 8px; }
+        p { color: #555; font-size: 0.85rem; font-family: Georgia, serif; line-height: 1.4; }
+        
+        .photo-polaroid {
+            background: white;
+            padding: 8px 8px 18px 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            margin-bottom: 12px;
+            width: 85%;
+        }
+
+        .photo-polaroid img { width: 100%; height: 180px; object-fit: cover; }
+
+        .badge {
+            margin-top: 10px;
+            padding: 6px 15px;
+            border: 1.5px solid #ff4081;
+            border-radius: 20px;
+            color: #ff4081;
+            font-weight: 600;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+
+        .heart { position: absolute; pointer-events: none; z-index: -1; animation: floatUp 5s linear forwards; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        #p1 { z-index: 5; } #p2 { z-index: 4; } #p3 { z-index: 3; } #p4 { z-index: 2; } #p5 { z-index: 1; }
+    </style>
+</head>
+<body>
+
+    <div id="book" class="book-container">
+        
+        <div id="p1" class="paper" onclick="flip(1)">
+            <div class="front">
+                <h1>Onde o Coração Pousa</h1>
+                <div class="photo-polaroid"><img src="cp.jpg"></div>
+                <p>Toque para abrir as memórias que guardo com tanto amor...</p>
+            </div>
+            <div class="back">
+                <h1>O Início</h1>
+                <p>Tudo começou de um jeito simples, mas hoje você é o motivo de todos os meus sorrisos.</p>
+                <div class="badge">CAPÍTULO 1</div>
+            </div>
+        </div>
+
+        <div id="p2" class="paper" onclick="flip(2)">
+            <div class="front">
+                <h1>Nossos Detalhes</h1>
+                <div class="photo-polaroid"><img src="trabalho.jpg"></div>
+                <p>Cada momento ao seu lado se torna uma memória inesquecível.</p>
+            </div>
+            <div class="back">
+                <h1>Conexão</h1>
+                <div class="photo-polaroid"><img src="corrida.jpg"></div>
+                <p>Gosto de como a gente se entende, mesmo sem dizer nada.</p>
+            </div>
+        </div>
+
+        <div id="p3" class="paper" onclick="flip(3)">
+            <div class="front">
+                <h1>Sintonia</h1>
+                <div class="photo-polaroid"><img src="nos.jpg"></div>
+                <p>É incrível como você consegue deixar tudo mais leve.</p>
+            </div>
+            <div class="back">
+                <h1>Alegria</h1>
+                <div class="photo-polaroid"><img src="deitado.jpg"></div>
+                <p>Você é o meu pensamento favorito durante o dia.</p>
+            </div>
+        </div>
+
+        <div id="p4" class="paper" onclick="flip(4)">
+            <div class="front">
+                <h1>Perfeita</h1>
+                <p>"Algumas pessoas trazem luz, você traz o sol inteiro"</p>
+                <div class="photo-polaroid"><img src="solo.jpg"></div>
+            </div>
+            <div class="back">
+                <h1>Desejo</h1>
+                <p>O tempo para quando estou com você, e voa quando estamos longe.</p>
+            </div>
+        </div>
+
+        <div id="p5" class="paper" onclick="flip(5)">
+            <div class="front">
+                <h1>Para Você</h1>
+                <div class="photo-polaroid"><img src="abrac.jpg"></div>
+                <p>O seu abraço é o meu endereço favorito.</p>
+            </div>
+            <div class="back" style="background: #c2185b; color: white;">
+                <p style="color: white; font-size: 0.75rem; line-height: 1.4;">
+                    Não existe dia ruim se eu tiver você por perto. <br><br>
+                    A saudade aperta, mas a vontade de te encher de beijos e mordidas é o que me faz contar as horas. <br><br>
+                    Te querer por perto virou meu vício favorito. 🥰
+                </p>
+                <div class="badge" style="border-color: white; color: white;">PARA SEMPRE</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const totalPapers = 5;
+        const book = document.getElementById('book');
+
+        function flip(id) {
+            if (id === 1 && currentStep === 0) {
+                book.classList.add('book-open');
+                document.getElementById('p1').classList.add('flipped');
+                currentStep = 1;
+            } else if (id === currentStep + 1) {
+                document.getElementById('p' + id).classList.add('flipped');
+                currentStep = id;
+            } else if (currentStep === totalPapers) {
+                // Resetar o livro
+                for (let i = totalPapers; i >= 1; i--) {
+                    document.getElementById('p' + i).classList.remove('flipped');
+                }
+                book.classList.remove('book-open');
+                currentStep = 0;
+            }
+        }
+
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = ['💖','✨','🌸','🤍'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 10 + 15 + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 600);
+    </script>
+</body>
+</html>
