@@ -19,11 +19,9 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        p { font-family: Georgia, 'Times New Roman', Times, serif; }
 
-        p {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-
+        /* Partículas */
         .heart {
             position: absolute;
             pointer-events: none;
@@ -38,12 +36,34 @@
             100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
         }
 
+        /* Container do Livro Responsivo */
         .book-container {
             position: relative;
             width: 420px;
             height: 580px;
             transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
             perspective: 2500px;
+        }
+
+        /* Ajustes para Celulares (Telas até 480px) */
+        @media screen and (max-width: 480px) {
+            .book-container {
+                width: 280px;
+                height: 420px;
+            }
+            h1 { font-size: 1.8rem !important; }
+            p { font-size: 0.85rem !important; }
+            .photo-polaroid img { height: 150px !important; }
+            .badge { padding: 8px 20px !important; font-size: 0.7rem !important; }
+            .book-open { transform: translateX(42%) !important; } /* Menos deslocamento no celular */
+        }
+
+        /* Ajustes para Tablets (Telas até 768px) */
+        @media screen and (min-width: 481px) and (max-width: 992px) {
+            .book-container {
+                width: 350px;
+                height: 500px;
+            }
         }
 
         .book-container::before {
@@ -73,7 +93,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            padding: 40px;
+            padding: 30px;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -103,23 +123,23 @@
         .flipped { transform: rotateY(-180deg); }
         .book-open { transform: translateX(50%); }
 
-        h1 { font-family: 'Dancing Script', cursive; color: #c2185b; font-size: 2.5rem; margin-bottom: 20px; }
-        p { line-height: 1.6; color: #555; font-size: 1rem; font-weight: 400; }
+        h1 { font-family: 'Dancing Script', cursive; color: #c2185b; font-size: 2.5rem; margin-bottom: 15px; }
+        p { line-height: 1.5; color: #555; font-size: 1rem; font-weight: 400; }
         
         .photo-polaroid {
             background: white;
-            padding: 12px 12px 35px 12px;
+            padding: 10px 10px 25px 10px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             transform: rotate(-3deg);
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             width: 90%;
         }
 
         .photo-polaroid img { width: 100%; height: 220px; object-fit: cover; border: 1px solid #eee; }
 
         .badge {
-            margin-top: 25px;
-            padding: 12px 30px;
+            margin-top: 15px;
+            padding: 10px 25px;
             border: 2px solid #ff4081;
             border-radius: 30px;
             color: #ff4081;
@@ -129,7 +149,6 @@
             background: rgba(255, 64, 129, 0.05);
         }
 
-        /* Camadas de Z-index */
         #p1 { z-index: 5; }
         #p2 { z-index: 4; }
         #p3 { z-index: 3; }
@@ -147,10 +166,7 @@
                 <div class="photo-polaroid">
                     <img src="cp.jpg" alt="Foto Capa">
                 </div>
-                <p> <br>
-                    Toque para abrir as memórias que guardo com tanto amor...</p>
-                    <br>
-                   
+                <p>Toque para abrir as memórias que guardo com tanto amor...</p>
             </div>
             <div class="back">
                 <h1>O Início</h1>
@@ -169,7 +185,10 @@
             </div>
             <div class="back">
                 <h1>Conexão</h1>
-                <p>Gosto de como a gente se entende, mesmo sem dizer nenhuma palavra.</p>
+               <div class="photo-polaroid" style="transform: rotate(2deg);">
+                    <img src="corrida.jpg" alt="Foto 2">
+                </div>
+                <p>Gosto de como a gente se entende, mesmo sem dizer nenhuma palavra </p>
             </div>
         </div>
 
@@ -179,11 +198,14 @@
                 <div class="photo-polaroid" style="transform: rotate(-2deg);">
                     <img src="nos.jpg" alt="Foto 3">
                 </div>
-                <p>É incrível como você consegue deixar tudo mais leve e bonito.</p>
+                <p>É incrível como você consegue deixar tudo mais leve.</p>
             </div>
             <div class="back">
                 <h1>Alegria</h1>
-                <p>Você é o meu pensamento favorito durante o dia.</p>
+                <div class="photo-polaroid" style="transform: rotate(2deg);">
+                    <img src="deitado.jpg" alt="Foto 2">
+                </div>
+                <p>Você é o meu pensamento favorito durante o dia</p>
             </div>
         </div>
 
@@ -207,18 +229,16 @@
                 <div class="photo-polaroid">
                     <img src="abrac.jpg" alt="Foto Final">
                 </div>
-                <p>Uma última coisa que eu precisava te dizer...</p>
-                <p>Existem abraços que são casas. O seu é o meu endereço favorito, onde eu sempre quero ficar e nunca mais sair</p>
+                <p style="font-size: 0.9rem;">Existem abraços que são casas. O seu é o meu endereço favorito, onde eu sempre quero ficar.</p>
             </div>
-            <div class="back" style="background: #c2185b; color: white; padding: 25px;">
-                <p style="color: white; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">
+            <div class="back" style="background: #c2185b; color: white; padding: 20px;">
+                <p style="color: white; font-size: 0.8rem; line-height: 1.4; font-weight: 500;">
                     Não existe dia ruim se eu tiver você por perto. <br> 
                     A saudade aperta todos os dias, <br> 
                     mas a vontade de te encontrar e te encher de beijos e mordidas é o que me faz contar as horas. <br> 
                     Te querer por perto virou meu vício favorito. 🥰
                 </p>
-                <p style="color: #fce4ec; font-size: 0.75rem; margin-top: 15px; opacity: 0.9;">Este é apenas o começo da nossa história sem fim.</p>
-                <div class="badge" style="border-color: white; color: white; margin-top: 15px; padding: 5px 15px; font-size: 0.7rem;">PARA SEMPRE</div>
+                <div class="badge" style="border-color: white; color: white; margin-top: 10px; padding: 5px 15px;">PARA SEMPRE</div>
             </div>
         </div>
 
@@ -247,7 +267,7 @@
             }
             else if (currentStep === totalPapers) {
                 for (let i = 1; i <= totalPapers; i++) {
-                    document.getElementById('p' + i).classList.remove('flipped');
+                    document.getElementById('p' + i).classList.remove('flipped');a
                 }
                 book.classList.remove('book-open');
                 setTimeout(() => {
@@ -267,7 +287,7 @@
             const icons = ['💖','✨','🌸','🤍','🌹'];
             heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
             heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+            heart.style.fontSize = (Math.random() * 10 + 15) + "px";
             const duration = Math.random() * 3 + 4;
             heart.style.animationDuration = duration + "s";
             document.body.appendChild(heart);
